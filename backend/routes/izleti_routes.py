@@ -67,3 +67,19 @@ def obrisi_izlet(id):
   izlet = Izlet[id]
   izlet.delete()
   return redirect(url_for('izlet.izlet'))
+
+@izlet_bp.route('/grafikon')
+@db_session
+def grafikon():
+  izleti = Izlet.select()[:]
+
+  planine = {}
+  for izlet in izleti:
+    if izlet.planina in planine:
+      planine[izlet.planina] += 1
+    else:
+      planine[izlet.planina] = 1
+
+  nazivi = list(planine.keys())
+  brojevi = list(planine.values())
+  return render_template('grafikon.html', nazivi=nazivi, brojevi=brojevi)

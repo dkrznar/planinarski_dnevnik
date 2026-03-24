@@ -1,0 +1,35 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: #2d6a4f !important;
+}
+
+.footer {
+  margin-top: 3rem;
+  padding: 1rem 0;
+  text-align: center;
+  color: #6c757d;
+  border-top: 1px solid #dee2e6;
+}
+
+.btn-primary {
+  background-color: #2d6a4f;
+  border-color: #2d6a4f;
+}
+
+.btn-primary:hover {
+  background-color: #40916c;
+  border-color: #40916c;
+}
+
+.container {
+  flex: 1;
+}
+
+.main-content{
+  flex: 1;
+}
