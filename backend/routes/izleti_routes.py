@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from pony.orm import db_session
-from models import Planina, Vrh, Izlet
 from datetime import datetime
+from models import Izlet
 
 izlet_bp = Blueprint('izlet', __name__)
 
@@ -15,7 +15,8 @@ def izlet():
 @db_session
 def novi_izlet():
   if request.method == 'POST':
-    vrh_id = request.form['vrh_id']
+    planina = request.form['planina']
+    vrh = request.form['vrh']
     datum = request.form['datum']
     ruta = request.form.get('ruta')
     opis = request.form.get('opis')
@@ -23,7 +24,8 @@ def novi_izlet():
     tezina = request.form.get('tezina')
 
     Izlet(
-      vrh = Vrh[vrh_id],
+      planina = planina,
+      vrh = vrh,
       datum = datetime.strptime(datum, '%Y-%m-%d'),
       ruta = ruta,
       opis = opis,
@@ -31,8 +33,8 @@ def novi_izlet():
       tezina = tezina
     )
     return redirect(url_for('izlet.izlet'))
-  vrhovi = Vrh.select()[:]
-  return render_template('novi_izlet.html', vrhovi = vrhovi)
+
+  return render_template('novi_izlet.html')
 
 @izlet_bp.route('/izleti/<int:id>/uredi', methods = ['GET', 'POST'])
 @db_session
@@ -40,13 +42,15 @@ def uredi_izlet(id):
   izlet = Izlet[id]
 
   if request.method == 'POST':
-    vrh_id = request.form['vrh_id']
+    planina = request.form['planina']
+    vrh = request.form['vrh']
     datum = request.form['datum']
     ruta = request.form.get('ruta')
     opis = request.form.get('opis')
     trajanje = request.form.get('trajanje')
     tezina = request.form.get('tezina')
-    izlet.vrh = Vrh[vrh_id]
+    izlet.planina = planina
+    izlet.vrh = vrh
     izlet.datum = datetime.strptime(datum, '%Y-%m-%d')
     izlet.ruta = ruta
     izlet.opis = opis
@@ -54,8 +58,7 @@ def uredi_izlet(id):
     izlet.tezina = tezina
 
     return redirect(url_for('izlet.izlet'))
-  vrhovi = Vrh.select()[:]
-  return render_template('uredi_izlet.html', izlet = izlet, vrhovi = vrhovi)
+  return render_template('uredi_izlet.html', izlet=izlet)
 
 
 @izlet_bp.route('/izleti/<int:id>/obrisi', methods = ['POST'])
