@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <h2>Nova planina</h2>
+    <a href="{{ url_for('planina.planine')}}" class="btn btn-secondary mb-3">Natrag</a>
+    <form action="{{ url_for('planina.nova_planina')}}" method="post">
+      <div class="mb-3">
+        <label for="naziv">Naziv: </label>
+        <input type="text" id="naziv" name="naziv" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="podrucje">Područje: </label>
+        <input type="text" id="podrucje" name="podrucje" class="form-control" required />
+      </div>
+    <button type="submit" class="btn btn-primary">Spremi</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

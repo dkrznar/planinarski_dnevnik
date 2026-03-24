@@ -1,0 +1,37 @@
+{%  extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mn-4">
+  <h2>Planine</h2>
+  <a href="{{ url_for('planina.nova_planina')}}" class="btn btn-primary">Dodaj planinu</a>
+</div>
+
+{% if planine %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Naziv planine</th>
+      <th>Područje</th>
+      <th>Vrhovi</th>
+      <th>Akcije</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for planina in planine %}
+    <tr>
+      <td>{{planina.naziv}}</td>
+      <td>{{planina.podrucje}}</td>
+      <td>{{planina.vrhovi.count() }}</td>
+      <td>
+        <a href="{{ url_for('planina.uredi_planinu', id=planina.id)}}" class="btn btn-sm btn-warning">Uredi</a>
+        <form action="{{ url_for('planina.obrisi_planinu', id=planina.id)}}" method="post" style="display: inline;">
+          <button type="submit" class="btn btn-sm btn-danger">Obriši</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Nema unesenih planina.</p>
+{% endif %}
+{% endblock %}
