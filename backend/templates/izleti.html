@@ -1,0 +1,43 @@
+{%  extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mn-4">
+  <h2>Izleti</h2>
+  <a href="{{ url_for('izlet.novi_izlet')}}" class="btn btn-primary">Dodaj izlet</a>
+</div>
+
+{% if izleti %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Planina</th>
+      <th>Vrh</th>
+      <th>Datum</th>
+      <th>Ruta</th>
+      <th>Težina</th>
+      <th>Trajanje</th>
+      <th>Akcije</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for izlet in izleti %}
+    <tr>
+      <td>{{izlet.planina}}</td>
+      <td>{{izlet.vrh}}</td>
+      <td>{{izlet.datum.strftime('%d.%m.%Y')}}</td>
+      <td>{{izlet.ruta}}</td>
+      <td>{{izlet.tezina}}</td>
+      <td>{{izlet.trajanje}}</td>
+      <td>
+        <a href="{{ url_for('izlet.uredi_izlet', id=izlet.id)}}" class="btn btn-sm btn-warning">Uredi</a>
+        <form action="{{ url_for('izlet.obrisi_izlet', id=izlet.id)}}" method="post" style="display: inline;">
+          <button type="submit" class="btn btn-sm btn-danger">Obriši</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Nema unesenih izleta.</p>
+{% endif %}
+{% endblock %}

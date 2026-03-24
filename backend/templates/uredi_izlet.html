@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <h2>Uredi izlet</h2>
+  <a href="{{ url_for('izlet.izlet')}}" class="btn btn-secondary mb-3">Natrag</a>
+  <form action="{{ url_for('izlet.uredi_izlet', id= izlet.id)}}" method="post">
+    <div class="mb-3">
+      <label for="planina">Planina: </label>
+      <input type="text" id="planina" name="planina" value="{{izlet.planina}}" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="vrh">Vrh: </label>
+        <input type="text" id="vrh" name="vrh" value="{{izlet.vrh}}" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="datum">Datum: </label>
+        <input type="date" id="datum" name="datum" value="{{izlet.datum.strftime('%Y-%m-%d')}}" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="ruta">Ruta: </label>
+        <input type="text" id="ruta" name="ruta" value="{{izlet.ruta}}" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="opis">Opis: </label>
+        <input type="text" id="opis" name="opis" value="{{izlet.opis}}" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="trajanje">Trajanje: </label>
+        <input type="text" id="trajanje" name="trajanje" value="{{izlet.trajanje}}" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="tezina">Težina: </label>
+        <input type="text" id="tezina" name="tezina" value="{{izlet.tezina}}" class="form-control" />
+      </div>
+    <button type="submit" class="btn btn-primary">Spremi</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <h2>Novi izlet</h2>
+    <a href="{{ url_for('izlet.izlet')}}" class="btn btn-secondary mb-3">Natrag</a>
+    <form action="{{ url_for('izlet.novi_izlet')}}" method="post">
+      <div class="mb-3">
+        <label for="planina">Planina: </label>
+        <input type="text" id="planina" name="planina" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="vrh">Vrh: </label>
+        <input type="text" id="vrh" name="vrh" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="datum">Datum: </label>
+        <input type="date" id="datum" name="datum" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="ruta">Ruta: </label>
+        <input type="text" id="ruta" name="ruta" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="opis">Opis: </label>
+        <input type="text" id="opis" name="opis" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="trajanje">Trajanje: </label>
+        <input type="text" id="trajanje" name="trajanje" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="tezina">Težina: </label>
+        <input type="text" id="tezina" name="tezina" class="form-control" />
+      </div>
+    <button type="submit" class="btn btn-primary">Spremi</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
