@@ -15,6 +15,7 @@ def izlet():
 @db_session
 def novi_izlet():
   if request.method == 'POST':
+    kategorija = request.form['kategorija']
     planina = request.form['planina']
     vrh = request.form['vrh']
     datum = request.form['datum']
@@ -24,6 +25,7 @@ def novi_izlet():
     tezina = request.form.get('tezina')
 
     Izlet(
+      kategorija = kategorija,
       planina = planina,
       vrh = vrh,
       datum = datetime.strptime(datum, '%Y-%m-%d'),
@@ -42,6 +44,7 @@ def uredi_izlet(id):
   izlet = Izlet[id]
 
   if request.method == 'POST':
+    kategorija = request.form['kategorija']
     planina = request.form['planina']
     vrh = request.form['vrh']
     datum = request.form['datum']
@@ -49,6 +52,7 @@ def uredi_izlet(id):
     opis = request.form.get('opis')
     trajanje = request.form.get('trajanje')
     tezina = request.form.get('tezina')
+    izlet.kategorija = kategorija
     izlet.planina = planina
     izlet.vrh = vrh
     izlet.datum = datetime.strptime(datum, '%Y-%m-%d')
@@ -75,14 +79,25 @@ def grafikon():
 
   planine = {}
   for izlet in izleti:
-    if izlet.planina in planine:
-      planine[izlet.planina] += 1
+    if izlet.kategorija == 'Izlet':
+      if izlet.planina in planine:
+        planine[izlet.planina] += 1
+      else:
+        planine[izlet.planina] = 1
+
+  kategorije = {}
+  for izlet in izleti:
+    if izlet.kategorija in kategorije:
+      kategorije[izlet.kategorija] += 1
     else:
-      planine[izlet.planina] = 1
+      kategorije[izlet.kategorija] = 1
 
   nazivi = list(planine.keys())
   brojevi = list(planine.values())
-  return render_template('grafikon.html', nazivi=nazivi, brojevi=brojevi)
+  kat_nazivi = list(kategorije.keys())
+  kat_brojevi = list(kategorije.values())
+
+  return render_template('grafikon.html', nazivi=nazivi, brojevi=brojevi, kat_nazivi=kat_nazivi, kat_brojevi=kat_brojevi)
 
 @izlet_bp.route('/izleti/<int:id>')
 @db_session

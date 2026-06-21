@@ -7,6 +7,14 @@
     <canvas id="planinaGraf"></canvas>
   </div>
 </div>
+
+<h2>Omjer izleta i akcija</h2>
+
+<div class="row">
+  <div class="col-md-6">
+    <canvas id="kategorijaGraf"></canvas>
+  </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
@@ -33,6 +41,19 @@
           }
         }
       }
+    }
+  });
+
+
+  const ctx2 = document.getElementById('kategorijaGraf').getContext('2d');
+  new Chart(ctx2, {
+    type: 'pie',
+    data: {
+      labels: {{kat_nazivi | tojson}},
+      datasets: [{
+        data: {{kat_brojevi | tojson}},
+        backgroundColor: ['#2d6a4f', '#f4a261']
+      }]
     }
   });
 </script>

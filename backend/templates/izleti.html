@@ -2,13 +2,14 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mn-4">
   <h2>Izleti</h2>
-  <a href="{{ url_for('izlet.novi_izlet')}}" class="btn btn-primary">Dodaj izlet</a>
+  <a href="{{ url_for('izlet.novi_izlet')}}" class="btn btn-primary">Dodaj</a>
 </div>
 
 {% if izleti %}
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>Kategorija</th>
       <th>Planina</th>
       <th>Vrh</th>
       <th>Datum</th>
@@ -21,6 +22,7 @@
   <tbody>
     {% for izlet in izleti %}
     <tr>
+      <td>{{izlet.kategorija}}</td>
       <td>{{izlet.planina}}</td>
       <td>{{izlet.vrh}}</td>
       <td>{{izlet.datum.strftime('%d.%m.%Y')}}</td>

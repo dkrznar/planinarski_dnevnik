@@ -6,6 +6,7 @@ db = Database()
 class Izlet(db.Entity):
   _table_ = "izlet"
   id = PrimaryKey(int, auto = True)
+  kategorija = Required(str)
   planina = Required(str)
   vrh = Required(str)
   datum = Required(datetime)

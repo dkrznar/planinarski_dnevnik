@@ -5,6 +5,14 @@
   <a href="{{ url_for('izlet.izlet')}}" class="btn btn-secondary mb-3">Natrag</a>
   <form action="{{ url_for('izlet.uredi_izlet', id= izlet.id)}}" method="post">
     <div class="mb-3">
+      <label for="kategorija">Kategorija: </label>
+      <select id="kategorija" name="kategorija" class="form-control" required>
+        <option value="">Odaberi kategoriju:</option>
+        <option value="Izlet" {% if izlet.kategorija == 'Izlet' %}selected{% endif %}>Izlet</option>
+        <option value="Akcija" {% if izlet.kategorija == 'Akcija' %}selected{% endif %}>Akcija</option>
+      </select>
+    </div>
+    <div class="mb-3">
       <label for="planina">Planina: </label>
       <input type="text" id="planina" name="planina" value="{{izlet.planina}}" class="form-control" required />
     </div>

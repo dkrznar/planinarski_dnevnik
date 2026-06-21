@@ -6,6 +6,14 @@
     <a href="{{ url_for('izlet.izlet')}}" class="btn btn-secondary mb-3">Natrag</a>
     <form action="{{ url_for('izlet.novi_izlet')}}" method="post">
       <div class="mb-3">
+        <label for="kategorija">Kategorija: </label>
+        <select id="kategorija" name="kategorija" class="form-control" required>
+          <option value="">Odaberi kategoriju</option>
+          <option value="Izlet">Izlet</option>
+          <option value="Akcija">Akcija</option>
+        </select>
+      </div>
+      <div class="mb-3">
         <label for="planina">Planina: </label>
         <input type="text" id="planina" name="planina" class="form-control" required />
       </div>
