@@ -83,3 +83,9 @@ def grafikon():
   nazivi = list(planine.keys())
   brojevi = list(planine.values())
   return render_template('grafikon.html', nazivi=nazivi, brojevi=brojevi)
+
+@izlet_bp.route('/izleti/<int:id>')
+@db_session
+def prikaz_izleta(id):
+  izlet = Izlet[id]
+  return render_template('prikaz_izleta.html', izlet=izlet)

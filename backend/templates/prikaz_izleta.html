@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Detalji</h2>
+<a href="{{url_for('izlet.izlet')}}" class="btn btn-secondary mb-3">Natrag</a>
+
+<p><strong>Planina:</strong> {{izlet.planina}}</p>
+<p><strong>Vrh:</strong> {{izlet.vrh}}</p>
+<p><strong>Datum:</strong> {{izlet.datum.strftime('%Y-%m-%d')}}</p>
+<p><strong>Ruta:</strong> {{izlet.ruta}}</p>
+<p><strong>Opis:</strong> {{izlet.opis}}</p>
+<p><strong>Trajanje:</strong> {{izlet.trajanje}}</p>
+<p><strong>Težina:</strong> {{izlet.tezina}}</p>
+
+<a href="{{ url_for('izlet.uredi_izlet', id=izlet.id)}}" class="btn btn-sm btn-warning">Uredi</a>
+<form action="{{ url_for('izlet.obrisi_izlet', id=izlet.id)}}" method="post" style="display: inline;">
+  <button type="submit" class="btn btn-sm btn-danger">Obriši</button>
+</form>
+{% endblock %}
