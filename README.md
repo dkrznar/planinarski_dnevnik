@@ -14,7 +14,7 @@ Web aplikacija koja omogućuje pregled, unos, uređivanje i brisanje planinarski
 
 ### Bez Dockera
 
-1.Kloniraj repozitorij
+1. Kloniraj repozitorij
 
 ```bash
 cd ~/Downloads
@@ -35,7 +35,7 @@ python -m venv venv
 .\venv\Scripts\activate
 ```
 
-4. Insaliraj requirements.txt
+4. Instaliraj requirements.txt
 
 ```bash
 pip install -r requirements.txt
@@ -56,9 +56,10 @@ docker-compose up --build
 
 ## Funkcionalnosti 
 
-Aplikacija je zamišljena s ciljem unošenja i pregleda planinarskih izleta. 
-- Pregled izleta
-- Unos novog izleta: sastoji se od unosa planine, vrha, rute, datuma, opisa, trajanja i težine.
-- Uređivanje izleta
-- Brisanje izleta
-- Vizualizacija izleta - grafikon prikazuje izleta po planinama
+Aplikacija je zamišljena s ciljem unošenja i pregleda planinarskih izleta/akcija. 
+- Pregled izleta/akcija
+- Unos novog izleta/akcije: sastoji se od unosa kategorije (akcija, izlet), planine, vrha, rute, datuma, opisa, trajanja i težine.
+- Pregled izleta/akcija
+- Uređivanje izleta/akcija
+- Brisanje izleta/akcija
+- Vizualizacija se sastoji od prikaza grafikona izleta po planinama i grafikona prikaza omjera izleta i akcija.
